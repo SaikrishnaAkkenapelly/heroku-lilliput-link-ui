@@ -1,0 +1,1 @@
+web: java -jar target/Lilliput-Link-UI-Lilliput-Link-UI-01.jar

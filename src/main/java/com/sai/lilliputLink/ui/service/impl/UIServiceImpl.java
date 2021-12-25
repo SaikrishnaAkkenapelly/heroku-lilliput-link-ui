@@ -19,6 +19,6 @@ public class UIServiceImpl implements UIService
 	{
 		ShortenServiceRequestDTO requestDTO = new ShortenServiceRequestDTO(LongURL);
 		
-		return restTemplate.postForObject("https://ll-shortening-service.herokuapp.com/url/shorten",requestDTO,ShortenServiceResponseDTO.class).getShortURL();
+		return restTemplate.postForObject("https://ll-api-gateway.herokuapp.com/url/shorten",requestDTO,ShortenServiceResponseDTO.class).getShortURL();
 	}
 }

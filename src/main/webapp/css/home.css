@@ -38,3 +38,8 @@ input[type=submit],input[type=button]
   border-radius: 4px;
   cursor: pointer;
 }
+img
+{
+	opacity: 0.4;
+	width : 100%;
+}

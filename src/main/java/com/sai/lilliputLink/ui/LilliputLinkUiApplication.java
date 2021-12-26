@@ -12,9 +12,9 @@ public class LilliputLinkUiApplication
 {
 	public static void main(String[] args)
 	{
+		SpringApplication.run(LilliputLinkUiApplication.class, args);
 		wakeUpShorteningService();
 		wakeUpRedirectService();
-		SpringApplication.run(LilliputLinkUiApplication.class, args);
 	}
 	
 	//code to wake shortening service on heroku

@@ -19,7 +19,7 @@
 						<tr>
 							<td><input type="text" name="longURL" maxlength="200" size="200" value="${longURL}" placeholder="Original link here.."/></td>
 							<td><input type="submit" value="Create Short Link"/></td>
-							<td><input type="text" value="${shortURL}" size="50" id="shortURL" placeholder="Shortened link here.."/></td>
+							<td><input type="text" value="${shortURL}" size="70" id="shortURL" placeholder="Shortened link here.."/></td>
 							<td><input type="button" value="Copy" id="copy"/></td>
 						</tr>
 					</table>

@@ -26,7 +26,7 @@ public class LilliputLinkUiApplication
 		}
 		catch(Throwable throwable)
 		{
-			System.out.println("ERROR while pinging shortening services..");
+			System.out.println("ERROR while pinging shortening services.."+throwable.getMessage());
 		}
 	}
 	
@@ -39,7 +39,7 @@ public class LilliputLinkUiApplication
 		}
 		catch(Throwable throwable)
 		{
-			System.out.println("ERROR while pinging wakeup service..");
+			System.out.println("ERROR while pinging redirect service.."+throwable.getMessage());
 		}
 	}
 

@@ -27,6 +27,7 @@ public class UIServiceImpl implements UIService
 	
 	public String handleDownTime(Exception e)
 	{
+		System.out.println("Handling downtime..");
 		return "Services.. starting up please try again..";
 	}
 }

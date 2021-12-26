@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import com.sai.lilliputLink.ui.dto.ShortenServiceRequestDTO;
 import com.sai.lilliputLink.ui.dto.ShortenServiceResponseDTO;
 
 @SpringBootApplication
@@ -22,11 +23,11 @@ public class LilliputLinkUiApplication
 	{
 		try
 		{
-			new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/url/ping",null,ShortenServiceResponseDTO.class);
+			new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/url/ping",new ShortenServiceRequestDTO(),ShortenServiceResponseDTO.class);
 		}
 		catch(Throwable throwable)
 		{
-			System.out.println("ERROR while pinging shortening services.."+throwable.getMessage());
+			System.out.println("ERROR while pinging shortening service.."+throwable.getMessage());
 		}
 	}
 	
@@ -35,7 +36,7 @@ public class LilliputLinkUiApplication
 	{
 		try
 		{
-			new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/ping",null,ShortenServiceResponseDTO.class);
+			new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/ping",new ShortenServiceRequestDTO(),ShortenServiceResponseDTO.class);
 		}
 		catch(Throwable throwable)
 		{

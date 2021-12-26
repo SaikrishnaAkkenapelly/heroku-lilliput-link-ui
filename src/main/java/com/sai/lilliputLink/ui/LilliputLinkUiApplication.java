@@ -12,14 +12,35 @@ public class LilliputLinkUiApplication
 {
 	public static void main(String[] args)
 	{
+		wakeUpShorteningService();
+		wakeUpRedirectService();
 		SpringApplication.run(LilliputLinkUiApplication.class, args);
-		new Thread(LilliputLinkUiApplication::pingAllServices).start();
 	}
 	
-	private static void pingAllServices()
+	//code to wake shortening service on heroku
+	private static void wakeUpShorteningService()
 	{
-		System.out.println(new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/url/ping",null,ShortenServiceResponseDTO.class).getMessage());
-		System.out.println(new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/ping",null,ShortenServiceResponseDTO.class).getMessage());
+		try
+		{
+			new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/url/ping",null,ShortenServiceResponseDTO.class);
+		}
+		catch(Throwable throwable)
+		{
+			System.out.println("ERROR while pinging shortening services..");
+		}
+	}
+	
+	//code to wake shortening service on heroku
+	private static void wakeUpRedirectService()
+	{
+		try
+		{
+			new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/ping",null,ShortenServiceResponseDTO.class);
+		}
+		catch(Throwable throwable)
+		{
+			System.out.println("ERROR while pinging wakeup service..");
+		}
 	}
 
 	@Bean

@@ -8,6 +8,8 @@ import com.sai.lilliputLink.ui.dto.ShortenServiceRequestDTO;
 import com.sai.lilliputLink.ui.dto.ShortenServiceResponseDTO;
 import com.sai.lilliputLink.ui.service.UIService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 @Component
 public class UIServiceImpl implements UIService
 {
@@ -15,10 +17,16 @@ public class UIServiceImpl implements UIService
 	RestTemplate restTemplate;
 	
 	@Override
+	@CircuitBreaker(name = "shorteningService", fallbackMethod = "handleDownTime")
 	public String getShortURL(String LongURL)
 	{
 		ShortenServiceRequestDTO requestDTO = new ShortenServiceRequestDTO(LongURL);
 		
 		return restTemplate.postForObject("https://ll-api-gateway.herokuapp.com/url/shorten",requestDTO,ShortenServiceResponseDTO.class).getShortURL();
+	}
+	
+	public String handleDownTime(Exception e)
+	{
+		return "Services.. starting up please try again..";
 	}
 }

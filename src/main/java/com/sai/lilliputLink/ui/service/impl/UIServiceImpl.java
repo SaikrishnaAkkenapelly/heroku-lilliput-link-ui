@@ -25,7 +25,7 @@ public class UIServiceImpl implements UIService
 		return restTemplate.postForObject("https://ll-api-gateway.herokuapp.com/url/shorten",requestDTO,ShortenServiceResponseDTO.class).getShortURL();
 	}
 	
-	public String handleDownTime(Exception e)
+	public String handleDownTime(String LongURL,Exception e)
 	{
 		System.out.println("Handling downtime..");
 		return "Services.. starting up please try again..";

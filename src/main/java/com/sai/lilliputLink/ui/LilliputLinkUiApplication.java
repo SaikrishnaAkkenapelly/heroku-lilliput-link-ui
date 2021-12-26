@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import com.sai.lilliputLink.ui.dto.ShortenServiceRequestDTO;
 import com.sai.lilliputLink.ui.dto.ShortenServiceResponseDTO;
 
 @SpringBootApplication
@@ -13,9 +12,9 @@ public class LilliputLinkUiApplication
 {
 	public static void main(String[] args)
 	{
-		SpringApplication.run(LilliputLinkUiApplication.class, args);
 		wakeUpShorteningService();
 		wakeUpRedirectService();
+		SpringApplication.run(LilliputLinkUiApplication.class, args);
 	}
 	
 	//code to wake shortening service on heroku
@@ -23,7 +22,8 @@ public class LilliputLinkUiApplication
 	{
 		try
 		{
-			new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/url/ping",new ShortenServiceRequestDTO(),ShortenServiceResponseDTO.class);
+			new RestTemplate().getForObject("https://ll-api-gateway.herokuapp.com/url/ping",ShortenServiceResponseDTO.class);
+			System.out.println("Ping successfull for shortening service.");
 		}
 		catch(Throwable throwable)
 		{
@@ -36,7 +36,8 @@ public class LilliputLinkUiApplication
 	{
 		try
 		{
-			new RestTemplate().postForObject("https://ll-api-gateway.herokuapp.com/ping",new ShortenServiceRequestDTO(),ShortenServiceResponseDTO.class);
+			new RestTemplate().getForObject("https://ll-api-gateway.herokuapp.com/ping",ShortenServiceResponseDTO.class);
+			System.out.println("Ping successfull for redirect service.");
 		}
 		catch(Throwable throwable)
 		{

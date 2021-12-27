@@ -15,8 +15,8 @@ public class LilliputLinkUiApplication
 	public static void main(String[] args)
 	{
 		CompletableFuture.runAsync(LilliputLinkUiApplication::wakeUpShorteningService);
-		SpringApplication.run(LilliputLinkUiApplication.class, args);
 		CompletableFuture.runAsync(LilliputLinkUiApplication::wakeUpRedirectService);
+		SpringApplication.run(LilliputLinkUiApplication.class, args);
 	}
 	
 	//code to wake shortening service on heroku

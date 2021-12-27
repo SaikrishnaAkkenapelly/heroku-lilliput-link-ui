@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function()
         {
  			  var copyText = document.getElementById("shortURL");
 			  copyText.select();
-			  navigator.clipboard.writeText(copyText.value);
+			  copyText.setSelectionRange(0, 99999);
+              document.execCommand("copy");
 			  alert("Copied Short URL: " + copyText.value);
         });
     }

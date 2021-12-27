@@ -39,7 +39,7 @@ public class LilliputLinkUiApplication
 		try
 		{
 			new RestTemplate().getForObject("https://ll-api-gateway.herokuapp.com/ping",ShortenServiceResponseDTO.class);
-			System.out.println("Ping successfull for shortening service." + Thread.currentThread().getName());
+			System.out.println("Ping successfull for redirect service." + Thread.currentThread().getName());
 		}
 		catch(Throwable throwable)
 		{

@@ -1,5 +1,7 @@
 package com.sai.lilliputLink.ui;
 
+import java.util.concurrent.CompletableFuture;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,17 +14,9 @@ public class LilliputLinkUiApplication
 {
 	public static void main(String[] args)
 	{
-		new Thread(LilliputLinkUiApplication::wakeUpShorteningService).start();
-		new Thread(LilliputLinkUiApplication::wakeUpRedirectService).start();
-		try
-		{
-			Thread.sleep(10000);
-		}
-		catch(Throwable throwable)
-		{
-			System.out.println("WARN could not be able to sleep the main thread..");
-		}
+		CompletableFuture.runAsync(LilliputLinkUiApplication::wakeUpShorteningService);
 		SpringApplication.run(LilliputLinkUiApplication.class, args);
+		CompletableFuture.runAsync(LilliputLinkUiApplication::wakeUpRedirectService);
 	}
 	
 	//code to wake shortening service on heroku
@@ -31,7 +25,7 @@ public class LilliputLinkUiApplication
 		try
 		{
 			new RestTemplate().getForObject("https://ll-api-gateway.herokuapp.com/url/ping",ShortenServiceResponseDTO.class);
-			System.out.println("Ping successfull for shortening service.");
+			System.out.println("Ping successfull for shortening service." + Thread.currentThread().getName());
 		}
 		catch(Throwable throwable)
 		{
@@ -45,7 +39,7 @@ public class LilliputLinkUiApplication
 		try
 		{
 			new RestTemplate().getForObject("https://ll-api-gateway.herokuapp.com/ping",ShortenServiceResponseDTO.class);
-			System.out.println("Ping successfull for redirect service.");
+			System.out.println("Ping successfull for shortening service." + Thread.currentThread().getName());
 		}
 		catch(Throwable throwable)
 		{

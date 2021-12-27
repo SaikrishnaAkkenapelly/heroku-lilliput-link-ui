@@ -12,9 +12,17 @@ public class LilliputLinkUiApplication
 {
 	public static void main(String[] args)
 	{
-		wakeUpShorteningService();
-		SpringApplication.run(LilliputLinkUiApplication.class, args);
+		new Thread(LilliputLinkUiApplication::wakeUpShorteningService).start();
 		new Thread(LilliputLinkUiApplication::wakeUpRedirectService).start();
+		try
+		{
+			Thread.sleep(10000);
+		}
+		catch(Throwable throwable)
+		{
+			System.out.println("WARN could not be able to sleep the main thread..");
+		}
+		SpringApplication.run(LilliputLinkUiApplication.class, args);
 	}
 	
 	//code to wake shortening service on heroku

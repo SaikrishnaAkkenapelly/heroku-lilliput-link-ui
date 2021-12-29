@@ -32,9 +32,8 @@
 					Microservices style architecture. One of the microservice is to
 					shorten the given link and the other is to redirect the shortened
 					link to original link.
-					The core logic for shortening the link is by calculating
-					the hash code of the given long link using Murmur hashing
-					algorithm from google's guava library.
+					Internally for shortening the given long link, Murmur hashing algorithm from google's guava library is used.
+					This algorithm produces a fixed 32bit output for the given string of any length.
 					To avoid the chance of collision when same link is
 					hashed again, it is concatenated with time of the request before
 					hashing.

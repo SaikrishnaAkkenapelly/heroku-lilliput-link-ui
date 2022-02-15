@@ -12,4 +12,11 @@ document.addEventListener('DOMContentLoaded', function()
 			  alert("Copied Short URL: " + copyText.value);
         });
     }
+    
+    var shortURL = document.getElementById("shortURL");
+    if(shortURL.value != null)
+    {
+		shortURL.style.color = "red";
+		setTimeout(function(){shortURL.style.color = "black";},500);
+	}
 });
